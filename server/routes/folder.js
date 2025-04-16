@@ -12,6 +12,7 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+console.log("second check");
 
 // GET /folders - get all folders
 router.get("/", async (req, res) => {

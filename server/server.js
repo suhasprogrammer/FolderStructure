@@ -12,6 +12,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
+console.log("checking");
 
 // Routes
 app.use("/folders", folderRoutes);

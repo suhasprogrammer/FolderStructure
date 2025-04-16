@@ -11,8 +11,11 @@ import {
 import API from "../api";
 import Sidebar from "../component/SideBar";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setDocumentData, setFolderData } from "../slice/folderSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [folders, setFolders] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -22,10 +25,16 @@ const Home = () => {
   const fetchFolders = async () => {
     const res = await API.get("/folders");
     setFolders(res.data);
+    dispatch(setFolderData(res.data));
+  };
+  const fetchDocument = async () => {
+    const res = await API.get("/documents");
+    dispatch(setDocumentData(res.data));
   };
 
   useEffect(() => {
     fetchFolders();
+    fetchDocument();
   }, []);
 
   const handleCreateFolder = async () => {

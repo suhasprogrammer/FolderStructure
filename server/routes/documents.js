@@ -38,4 +38,13 @@ router.get("/folder/:folderId", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const docs = await Document.find();
+    res.json(docs);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
